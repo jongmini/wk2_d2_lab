@@ -39,76 +39,43 @@ class SortedArray
 
   def each &block
 
-    # loop over all elements in @internal_arr
-    # yield to each element
-    # set the index lo and hi and keep track
     i = 0
-    while i < @internal_arr.size # or use until i == arr.size
+    while i < @internal_arr.size 
       yield @internal_arr[i]
       i += 1  
     end
     return @internal_arr
+    
   end
 
-  def map &block # what's the diff btw each vs map?
-    # use self.each &block
+  def map &block 
 
     temp_array=[]
     self.each{ |element| temp_array << yield(element) }
-    
     temp_array
+
   end
 
   def map! &block
-    # temp_array=[]
-    # i = 0
-    # while i < @internal_arr.size 
-    #   temp_array << (yield @internal_arr[i])
-    #   i += 1  
-    # end
-    # @internal_arr = temp_array
-    # return @internal_arr
 
     temp_array=[]
     self.each{ |element| temp_array << yield(element) }
-    
     @internal_arr = temp_array
 
   end
 
-  def find value
+  def find &block
 
-    # i = 0
-    # until i > @internal_arr.length
-    #   if yield(@internal_arr[i])
-    #     @internal_arr[i]
-    #     i += 1
-    #   else
-    #     nil
-    #   end
-    # end
-
-    self.each do |ele| 
-      if yield ele
-        result = yield ele
-        break
-      end
-      return result
-
-    # self.each { |ele| return x if yield x }
+    self.each { |ele| return ele if yield ele }
+    nil
 
   end
 
-  def inject acc=nil, &block
-    # i = 0
-    # while i < @internal_arr.length
-    #   acc = (yield acc,@internal_arr[i])
-    #   i += 1
-    # end 
-    # return acc
+  def inject &block
 
-    self.each { |acc, ele| acc = yield acc,ele }
-    return acc 
+    acc = 0
+    self.each { |ele| acc = yield acc,ele }
+    acc 
 
   end
 

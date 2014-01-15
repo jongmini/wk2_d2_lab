@@ -62,17 +62,27 @@ describe SortedArray do
 
   describe :find do
     # it_should_behave_like "yield to all elements in sorted array", :find
+    it 'should return the value that meets the condition returned by block' do
+       sorted_array.find { |x| x % 3 == 0 } == 3
+       sorted_array.find { |x| x % 9 == 0 } == nil
+    end
 
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
+    it "should return nil when no values meet the condition" do
+      sorted_array.find { |x| x % 9 == 0 } == nil
     end
   end
 
   describe :inject do
     # it_should_behave_like "yield to all elements in sorted array", :inject
-
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+    it "should return the sum of the array when + is passed as the method" do
+      sorted_array.inject{ |ele| 0 + ele } == 25
+      # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
+
+    it "should return the total value when each value is multiplied to each" do
+      sorted_array.inject{ |ele| 1 * ele } == 1512
+      # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+    end
+
   end
 end
