@@ -28,13 +28,18 @@ describe SortedArray do
       describe :map do
         it 'the original array should not be changed' do
           original_array = sorted_array.internal_arr
+          # setting original_array to sorted_array.internal_arr 
           expect { sorted_array.map {|el| el } }.to_not change { original_array }
         end
 
         it_should_behave_like "yield to all elements in sorted array", :map
-
+#
         it 'creates a new array containing the values returned by the block' do
-          pending "fill this spec in with a meaningful example"
+          # pending "fill this spec in with a meaningful example"
+          # insert the test for creation of values returned
+          # original_array = sorted_array.internal_arr
+          expect { original_array.map {|el| el} }.should eq { self.map }
+
         end
       end
     end
@@ -42,7 +47,9 @@ describe SortedArray do
     describe "that update the original array" do
       describe :map! do
         it 'the original array should be updated' do
-          pending "fill this spec in with a meaningful example"
+          # pending 
+          # setting original_array to sorted_array.internal_arr 
+          expect { original_array.map {|el| el } }.to_not change { sorted_array.internal_arr }
         end
 
         it_should_behave_like "yield to all elements in sorted array", :map!
@@ -54,19 +61,19 @@ describe SortedArray do
     end
   end
 
-  describe :find do
-    it_should_behave_like "yield to all elements in sorted array", :find
+#   describe :find do
+#     it_should_behave_like "yield to all elements in sorted array", :find
 
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
-    end
-  end
+#     it "does not currently have any examples for it" do
+#       pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
+#     end
+#   end
 
-  describe :inject do
-    it_should_behave_like "yield to all elements in sorted array", :inject
+#   describe :inject do
+#     it_should_behave_like "yield to all elements in sorted array", :inject
 
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
-    end
-  end
+#     it "does not currently have any examples for it" do
+#       pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+#     end
+#   end
 end

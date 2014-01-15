@@ -6,7 +6,7 @@ class SortedArray
     arr.each { |el| add el }
   end
 
-  def add el
+  def add el  #places the value in the correct position
     # we are going to keep this array
     # sorted at all times. so this is ez
     lo = 0
@@ -38,15 +38,37 @@ class SortedArray
   end
 
   def each &block
-    raise NotImplementedError.new("You need to implement the each method!")
+
+    # loop over all elements in @internal_arr
+    # yield to each element
+    # set the index lo and hi and keep track
+    i = 0
+    while i < @internal_arr.size # or use until i == arr.size
+      yield @internal_arr[i]
+      i += 1  
+    end
+    return @internal_arr
   end
 
-  def map &block
-    raise NotImplementedError.new("You need to implement the map method!")
+  def map &block # what's the diff btw each vs map?
+    # use self.each &block
+
+    temp_array=[]
+    self.each{ |element| temp_array << yield(element) }
+    
+    temp_array
   end
 
   def map! &block
-    raise NotImplementedError.new("You need to implement the map! method!")
+    temp_array=[]
+    i = 0
+    while i < @internal_arr.size 
+      temp_array << (yield @internal_arr[i])
+      i += 1  
+    end
+    @internal_arr = temp_array
+    return @internal_arr
+
   end
 
   def find value
