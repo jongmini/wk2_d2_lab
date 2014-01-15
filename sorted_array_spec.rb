@@ -83,6 +83,5 @@ describe SortedArray do
       sorted_array.inject{ |ele| 1 * ele } == 1512
       # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
-
   end
 end

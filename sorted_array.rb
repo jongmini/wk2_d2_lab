@@ -45,7 +45,7 @@ class SortedArray
       i += 1  
     end
     return @internal_arr
-    
+
   end
 
   def map &block 
@@ -78,5 +78,6 @@ class SortedArray
     acc 
 
   end
+
 
 end
