@@ -74,21 +74,21 @@ class SortedArray
   def find value
 
     i = 0
-    unitl i > @internal_arr.length
+    until i > @internal_arr.length
       if yield(@internal_arr[i])
         @internal_arr[i]
         i += 1
       else
         nil
       end
-    # end
+    end
 
   end
 
   def inject acc=nil, &block
     i = 0
-    while i > @internal_arr.length
-      acc = yield acc,@internal_arr[i]
+    while i < @internal_arr.length
+      acc = (yield acc,@internal_arr[i])
       i += 1
     end 
     return acc
