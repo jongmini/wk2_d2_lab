@@ -60,38 +60,55 @@ class SortedArray
   end
 
   def map! &block
+    # temp_array=[]
+    # i = 0
+    # while i < @internal_arr.size 
+    #   temp_array << (yield @internal_arr[i])
+    #   i += 1  
+    # end
+    # @internal_arr = temp_array
+    # return @internal_arr
+
     temp_array=[]
-    i = 0
-    while i < @internal_arr.size 
-      temp_array << (yield @internal_arr[i])
-      i += 1  
-    end
+    self.each{ |element| temp_array << yield(element) }
+    
     @internal_arr = temp_array
-    return @internal_arr
 
   end
 
   def find value
 
-    i = 0
-    until i > @internal_arr.length
-      if yield(@internal_arr[i])
-        @internal_arr[i]
-        i += 1
-      else
-        nil
+    # i = 0
+    # until i > @internal_arr.length
+    #   if yield(@internal_arr[i])
+    #     @internal_arr[i]
+    #     i += 1
+    #   else
+    #     nil
+    #   end
+    # end
+
+    self.each do |ele| 
+      if yield ele
+        result = yield ele
+        break
       end
-    end
+      return result
+
+    # self.each { |ele| return x if yield x }
 
   end
 
   def inject acc=nil, &block
-    i = 0
-    while i < @internal_arr.length
-      acc = (yield acc,@internal_arr[i])
-      i += 1
-    end 
-    return acc
+    # i = 0
+    # while i < @internal_arr.length
+    #   acc = (yield acc,@internal_arr[i])
+    #   i += 1
+    # end 
+    # return acc
+
+    self.each { |acc, ele| acc = yield acc,ele }
+    return acc 
 
   end
 
