@@ -72,10 +72,27 @@ class SortedArray
   end
 
   def find value
-    raise NotImplementedError.new("You need to implement the find method!")
+
+    i = 0
+    unitl i > @internal_arr.length
+      if yield(@internal_arr[i])
+        @internal_arr[i]
+        i += 1
+      else
+        nil
+      end
+    # end
+
   end
 
   def inject acc=nil, &block
-    raise NotImplementedError.new("You need to implement the inject method!")
+    i = 0
+    while i > @internal_arr.length
+      acc = yield acc,@internal_arr[i]
+      i += 1
+    end 
+    return acc
+
   end
+
 end
